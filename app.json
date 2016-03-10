@@ -1,6 +1,6 @@
 {
   "name": "Slack Command",
   "description": "Test",
-  "repository": "https://github.com/mattharbo/commandgastonchannel.git",
+  "repository": "https://github.com/mattharbo/slackslashcommand.git",
   "addons": []
 }
