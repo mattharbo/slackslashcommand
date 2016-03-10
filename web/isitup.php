@@ -86,15 +86,14 @@ $user_agent = "MHA";
 // echo $reply;
 
 $jsonData = [
-      'attachments' => [[
-        'fallback' => 'fallback',
-        'pretext' => "@channel: bjhrzg",
-        'title' => 'title',
-        'text' => "Yo man!",
-        "mrkdwn_in" => ["text", "pretext"],
-        'color' => '#F35A00'  
-    ]]//end attachments
-  ];
+    "response_type": "in_channel",
+    "text": "It's 80 degrees right now.",
+    "attachments": [[
+        
+            "text":"Partly cloudy today and tomorrow"
+        
+    ]]
+];
    
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($jsonData);
