@@ -28,6 +28,7 @@ $command = $_POST['command'];
 $text = $_POST['text'];
 $token = $_POST['token'];
 $responseurl=$_POST["response_url"];
+$username=$_POST["user_name"];
 
 # Check the token and make sure the request is from our team 
   // if($token != 'iuI46C6PFcsuBcBEIcScZ4UZ'){ #replace this with the token from your slash command configuration page
@@ -90,9 +91,9 @@ $responseurl=$_POST["response_url"];
 
   $jsonData = [
       "response_type" => "in_channel",
-      "text" => "It's 80 degrees right now.",
+      "text" => "@channel: Another Poneyyyy from ".$username." :unicorn_face:",
       'attachments' => [[
-        'text' => $text,
+        'text' => 'table count here',
         'color' => '#F35A00'  
     ]]//end attachments
   ];
@@ -107,7 +108,7 @@ $responseurl=$_POST["response_url"];
   curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
    
   //Set the content type to application/json
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+  //curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
    
   //Execute the request
   $result = curl_exec($ch);
