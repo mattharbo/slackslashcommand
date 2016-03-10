@@ -89,13 +89,11 @@ $responseurl=$_POST["response_url"];
   $ch = curl_init($responseurl);
 
   $jsonData = [
-
       "response_type" => "in_channel",
       "text" => "It's 80 degrees right now.",
-
       'attachments' => [[
-        'text' => $text
-      'color' => '#F35A00'  
+        'text' => $text,
+        'color' => '#F35A00'  
     ]]//end attachments
   ];
    
