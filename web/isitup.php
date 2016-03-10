@@ -30,11 +30,11 @@ $token = $_POST['token'];
 $responseurl=$_POST["response_url"];
 
 # Check the token and make sure the request is from our team 
-if($token != 'iuI46C6PFcsuBcBEIcScZ4UZ'){ #replace this with the token from your slash command configuration page
-  $msg = "The token for the slash command doesn't match. Check your script.";
-  die($msg);
-  echo $msg;
-}
+  // if($token != 'iuI46C6PFcsuBcBEIcScZ4UZ'){ #replace this with the token from your slash command configuration page
+  //   $msg = "The token for the slash command doesn't match. Check your script.";
+  //   die($msg);
+  //   echo $msg;
+  // }
 
 
 # isitup.org doesn't require you to use API keys, but they do require that any automated script send in a user agent string.
@@ -86,14 +86,19 @@ $user_agent = "MHA";
 // echo $reply;
 
 $jsonData = [
-    "response_type": "in_channel",
-    "text": "It's 80 degrees right now.",
-    "attachments": [[
-        
-            "text":"Partly cloudy today and tomorrow"
-        
-    ]]
-];
+  
+"response_type" => "in_channel",
+"text" => "It's 80 degrees right now.",
+
+      'attachments' => [[
+        'fallback' => 'fallback',
+        'pretext' => "@channel: bjhrzg",
+        'title' => 'title',
+        'text' => "Partly cloudy today and tomorrow",
+        "mrkdwn_in" => ["text", "pretext"],
+        'color' => '#F35A00'  
+    ]]//end attachments
+  ];
    
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($jsonData);
