@@ -29,7 +29,7 @@ $text = $_POST['text'];
 $token = $_POST['token'];
 
 # Check the token and make sure the request is from our team 
-if($token != 'vnLfaOlI7natbpU5tKQBm5dQ'){ #replace this with the token from your slash command configuration page
+if($token != 'iuI46C6PFcsuBcBEIcScZ4UZ'){ #replace this with the token from your slash command configuration page
   $msg = "The token for the slash command doesn't match. Check your script.";
   die($msg);
   echo $msg;
@@ -38,7 +38,7 @@ if($token != 'vnLfaOlI7natbpU5tKQBm5dQ'){ #replace this with the token from your
 
 # isitup.org doesn't require you to use API keys, but they do require that any automated script send in a user agent string.
 # You can keep this one, or update it to something that makes more sense for you
-$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
+$user_agent = "MHA";
 
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
