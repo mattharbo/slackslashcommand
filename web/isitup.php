@@ -85,10 +85,21 @@ $user_agent = "MHA";
 // # Send the reply back to the user. 
 // echo $reply;
 
+$jsonData = [
+      'attachments' => [[
+        'fallback' => 'fallback',
+        'pretext' => "@channel: bjhrzg",
+        'title' => 'title',
+        'text' => "Yo man!",
+        "mrkdwn_in" => ["text", "pretext"],
+        'color' => '#F35A00'  
+    ]]//end attachments
+  ];
+   
+//Encode the array into JSON.
+$jsonDataEncoded = json_encode($jsonData);
 
-
-$variable="my name is matt";
-echo $variable;
+echo $jsonDataEncoded;
 
 
 
