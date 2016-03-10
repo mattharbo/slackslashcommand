@@ -29,6 +29,8 @@ $text = $_POST['text'];
 $token = $_POST['token'];
 $responseurl=$_POST["response_url"];
 
+echo $responseurl;
+
 # Check the token and make sure the request is from our team 
   // if($token != 'iuI46C6PFcsuBcBEIcScZ4UZ'){ #replace this with the token from your slash command configuration page
   //   $msg = "The token for the slash command doesn't match. Check your script.";
@@ -43,69 +45,46 @@ $user_agent = "MHA";
 
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
-// $url_to_check = "https://isitup.org/".$text.".json";
+$url_to_check = "https://isitup.org/".$text.".json";
 
-// # Set up cURL 
-// $ch = curl_init($url_to_check);
+# Set up cURL 
+$ch = curl_init($url_to_check);
 
-// # Set up options for cURL 
-// # We want to get the value back from our query 
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// # Send in our user agent string 
-// curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+# Set up options for cURL 
+# We want to get the value back from our query 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+# Send in our user agent string 
+curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 
-// # Make the call and get the response 
-// $ch_response = curl_exec($ch);
-// # Close the connection 
-// curl_close($ch);
+# Make the call and get the response 
+$ch_response = curl_exec($ch);
+# Close the connection 
+curl_close($ch);
 
-// # Decode the JSON array sent back by isitup.org
-// $response_array = json_decode($ch_response,true);
+# Decode the JSON array sent back by isitup.org
+$response_array = json_decode($ch_response,true);
 
-// # Build our response 
-// # Note that we're using the text equivalent for an emoji at the start of each of the responses.
-// # You can use any emoji that is available to your Slack team, including the custom ones.
-// if($ch_response === FALSE){
-//   # isitup.org could not be reached 
-//   $reply = "Ironically, isitup could not be reached.";
-// }else{
-//   if($response_array["status_code"] == 1){
-//   	# Yay, the domain is up! 
-//     $reply = ":thumbsup: I am happy to report that *<http://".$response_array["domain"]."|".$response_array["domain"].">* is *up*!";
-//   } else if($response_array["status_code"] == 2){
-//     # Boo, the domain is down. 
-//     $reply = ":disappointed: I am sorry to report that *<http://".$response_array["domain"]."|".$response_array["domain"].">* is *not up*!";
-//   } else if($response_array["status_code"] == 3){
-//     # Uh oh, isitup.org doesn't think the domain entered by the user is valid
-//     $reply = ":interrobang: *".$text."* does not appear to be a valid domain. \n";
-//     $reply .= "Please enter both the domain name AND suffix (example: *amazon.com* or *whitehouse.gov*).";
-//   }
-// }
+# Build our response 
+# Note that we're using the text equivalent for an emoji at the start of each of the responses.
+# You can use any emoji that is available to your Slack team, including the custom ones.
+if($ch_response === FALSE){
+  # isitup.org could not be reached 
+  $reply = "Ironically, isitup could not be reached.";
+}else{
+  if($response_array["status_code"] == 1){
+  	# Yay, the domain is up! 
+    $reply = ":thumbsup: I am happy to report that *<http://".$response_array["domain"]."|".$response_array["domain"].">* is *up*!";
+  } else if($response_array["status_code"] == 2){
+    # Boo, the domain is down. 
+    $reply = ":disappointed: I am sorry to report that *<http://".$response_array["domain"]."|".$response_array["domain"].">* is *not up*!";
+  } else if($response_array["status_code"] == 3){
+    # Uh oh, isitup.org doesn't think the domain entered by the user is valid
+    $reply = ":interrobang: *".$text."* does not appear to be a valid domain. \n";
+    $reply .= "Please enter both the domain name AND suffix (example: *amazon.com* or *whitehouse.gov*).";
+  }
+}
 
-// # Send the reply back to the user. 
-// echo $reply;
-
-$jsonData = [
-  
-"response_type" => "in_channel",
-"text" => "It's 80 degrees right now.",
-
-      'attachments' => [[
-        'fallback' => 'fallback',
-        'pretext' => "@channel: bjhrzg",
-        'title' => 'title',
-        'text' => "Partly cloudy today and tomorrow",
-        "mrkdwn_in" => ["text", "pretext"],
-        'color' => '#F35A00'  
-    ]]//end attachments
-  ];
-   
-//Encode the array into JSON.
-$jsonDataEncoded = json_encode($jsonData);
-
-echo $jsonDataEncoded;
-
-
-
+# Send the reply back to the user. 
+echo $reply;
 
 ?>
