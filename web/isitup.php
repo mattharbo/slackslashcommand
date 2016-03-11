@@ -27,8 +27,8 @@ $username=$_POST["user_name"];
   $ch = curl_init($responseurl);
 
   $jsonData = [
-      "response_type" => "in_channel",
-      "text" => $token,
+      // "response_type" => "in_channel",
+      "text" => $text." has been added to your expenses",
       'attachments' => [[
         'text' => 'table count here',
         'color' => '#F35A00'  
@@ -45,9 +45,15 @@ $username=$_POST["user_name"];
   curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
    
   //Set the content type to application/json
-  //curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
    
   //Execute the request
   $result = curl_exec($ch);
+
+//DB File creation
+
+$fp = fopen('./'.$token.'.json', 'w');
+fwrite($fp, $jsonDataEncoded);
+fclose($fp);
 
 ?>
