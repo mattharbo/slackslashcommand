@@ -50,7 +50,7 @@ if (count($positions1)==count($positions2)) {
 
 $jsonData = [
       "response_type" => "in_channel",//if you want to set this message to private
-      "text" => substr ($sampledata, $positions1[0]+1, $positions2[0]-1)." has been added to your expenses",
+      "text" => substr ($sampledata, $positions1[0]+1, $positions2[0]-1)." has been added to your expenses !!",
       'attachments' => [[
         'text' => 'table count here',
         'color' => '#F35A00'  
