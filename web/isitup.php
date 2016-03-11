@@ -41,7 +41,7 @@ $positions2 = array();
       $lastPos = $lastPos + strlen($needle2);
     }
 
-    if (count($positions1)==count($positions2)) {
+    if (count($positions1)==count($positions2) and count($positions1)!=0) {
     
       // echo substr ($text, $positions1[0]+1, $positions2[0]-1);
       // echo "<br>";
@@ -88,7 +88,7 @@ $positions2 = array();
       #2 if file existing then update it
 
   }else{
-    echo ":face_with_head_bandage: Please request with brackets";
+    echo ":face_with_head_bandage: Please request with brackets as show in example";
   }
 
 }//End token validation

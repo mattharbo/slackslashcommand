@@ -29,7 +29,7 @@ while (($lastPos = strpos($sampledata, $needle2, $lastPos))!== false) {
     $lastPos = $lastPos + strlen($needle2);
 }
 
-if (count($positions1)==count($positions2)) {
+if (count($positions1)==count($positions2) and count($positions1)!=0) {
 	echo substr ($sampledata, $positions1[0]+1, $positions2[0]-1);
 	echo "<br>";
 	echo substr ($sampledata, $positions1[1]+1, ($positions2[1]-1)-$positions1[1]);
